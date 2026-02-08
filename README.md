@@ -2,45 +2,6 @@
 
 A powerful tool that captures web interactions and animations, generating structured data that AI coding agents can use to recreate animations in your projects.
 
-## ✅ Implementation Status
-
-### Phase 1: Core Infrastructure
-
-- [x] Set up project structure with TypeScript
-- [x] Configure Playwright for browser automation
-- [x] Create JSONL trace writer utility
-- [x] Build stable selector engine
-- [x] Implement DOM diff compression
-
-### Phase 2: Event Capture System
-
-- [x] Hook interaction events (click, hover, input, submit)
-- [x] Capture pre/post DOM state snapshots
-- [x] Record CSS computed style deltas
-- [x] Track network requests (XHR/fetch)
-- [x] Filter out framework noise
-
-### Phase 3: Output Generation
-
-- [x] Create structured event record format
-- [x] Build trace summarization logic
-- [x] Generate human-readable output
-- [x] Add export functionality (JSON/JSONL)
-
-### Phase 4: CLI & Interface
-
-- [x] Build CLI tool
-- [x] Add interactive session control
-- [x] Implement URL targeting
-- [x] Create output preview
-
-### Phase 5: Documentation & Testing
-
-- [x] Write user documentation
-- [x] Create example outputs
-- [x] Create AI prompt templates
-- [x] Write quick start guide
-
 ## 🎯 What It Does
 
 This tool:
@@ -420,6 +381,7 @@ node recover-sessions.js
 ```
 
 This will:
+
 - Find sessions with traces.jsonl but missing output files
 - Extract animation profiles from captured traces
 - Generate session.json, ai-output.json, and README.md files
@@ -444,7 +406,7 @@ node dist/cli.js record https://example.com -d 30
 
 - Ensure you used `npm run record --` (with `--`) not `npm start record`
 - Check that you specified the duration flag: `-d <seconds>`
-- The app will show "⏱️  Recording for X seconds..." if the flag was recognized
+- The app will show "⏱️ Recording for X seconds..." if the flag was recognized
 
 ## 📊 Understanding the Output
 

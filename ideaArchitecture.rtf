@@ -1,0 +1,582 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 HelveticaNeue-Bold;
+\f3\fnil\fcharset0 .SFNS-Regular;\f4\fnil\fcharset0 .SFNS-Semibold;\f5\fnil\fcharset0 .SFNS-RegularItalic;
+\f6\fnil\fcharset0 AppleColorEmoji;\f7\fnil\fcharset0 LucidaGrande-Bold;\f8\fnil\fcharset128 HiraginoSans-W5;
+\f9\froman\fcharset0 Times-Bold;\f10\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red14\green14\blue14;\red0\green0\blue0;
+}
+{\*\expandedcolortbl;;\cssrgb\c6700\c6700\c6700;\cssrgb\c6707\c6707\c6699;\cssrgb\c0\c0\c0;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww14840\viewh12920\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs48 \cf0 Core Idea
+\f1\b0\fs24 \
+\pard\tx860\tx1420\tx1980\tx2540\tx3100\tx3660\tx4220\tx4780\tx5340\tx5900\tx6460\tx7020\li300\sl324\slmult1\partightenfactor0
+
+\f2\b\fs28 \cf2 A tool that instruments the browser, captures the full interaction trace (DOM + CSS + event graph + network), and then synthesizes a reusable model that an AI can turn into a recreated interactive site.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b0 \cf2 Components needed:\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2  1) Browser instrumentation
+\f3\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Inject script into pages\
+	\'95	Hook into:\
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Event listeners\
+	\'95	DOM mutations\
+	\'95	CSS rule changes / computed styles\
+	\'95	JS call stacks\
+	\'95	Network (XHR/fetch/ws)\
+	\'95	Browser storage\
+\
+This is similar to test frameworks but much deeper.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2  2) Interaction trace format
+\f3\b0\fs28 \
+\
+A structured recording of:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Events (click, hover, input)\
+	\'95	Pre/Post DOM state\
+	\'95	CSS computed values\
+	\'95	Network responses\
+	\'95	JS execution context signatures\
+\
+This is 
+\f5\i \cf2 way richer
+\f3\i0 \cf2  than session replay.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 3) AI processing pipeline
+\f3\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Convert trace to a model that understands:\
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	UI states\
+	\'95	Event\uc0\u8594 state transitions\
+	\'95	Visual and logical dependencies\
+\
+Then generate:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Static assets\
+	\'95	Stubbed backend\
+	\'95	Interactive behavior code (React / Vue / Svelte / vanilla)\
+\
+This is essentially 
+\f2\b \cf2 code synthesis from behavior
+\f3\b0 \cf2 , not just from UI pics.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs34 \cf2 This tool\'92s vision path\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs28 \cf2  Phase 1:
+\f3\b0 \cf2  Record\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Instrument browser\
+	\'95	Record rich interaction traces\
+\
+ 
+\f2\b \cf2 Phase 2:
+\f3\b0 \cf2  Normalize\
+	\'95	Convert traces to structured graphs\
+	\'95	UI state graph + event map\
+\
+ 
+\f2\b \cf2 Phase 3:
+\f3\b0 \cf2  Synthesize\
+	\'95	Feed to AI\
+	\'95	Generate framework code from interaction grammar\
+\
+ 
+\f2\b \cf2 Phase 4:
+\f3\b0 \cf2  Validate\
+	\'95	Local server that emulates behavior\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs34 \cf2 \
+
+\fs48 Architecture App Design
+\fs34 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 1. Core principle (important mindset shift)
+\f3\b0\fs28 \cf2 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f6 \cf2 \uc0\u10060 
+\f3  
+\f2\b \cf2 Do NOT try to record \'93everything\'94
+\f3\b0 \cf2 \
+
+\f6 \uc0\u9989 
+\f3  
+\f2\b \cf2 Record only what is causally relevant
+\f3\b0 \cf2  to interactivity\
+\
+Interactivity is not:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	raw JS execution state\
+	\'95	full browser heap\
+	\'95	every CSS rule\
+\
+Interactivity 
+\f2\b \cf2 is
+\f3\b0 \cf2 :\
+\
+\pard\tx860\tx1420\tx1980\tx2540\tx3100\tx3660\tx4220\tx4780\tx5340\tx5900\tx6460\tx7020\li300\sl324\slmult1\partightenfactor0
+
+\f2\b \cf2 Event 
+\f7 \uc0\u8594 
+\f2  DOM delta 
+\f7 \uc0\u8594 
+\f2  Style delta 
+\f7 \uc0\u8594 
+\f2  Network side-effects
+\f3\b0 \cf2 \
+\
+If you capture those 
+\f5\i cleanly
+\f3\i0 , an AI agent can recreate behavior with far less data.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs34 \cf2 2. High-level architecture (cost-minimized)\
+
+\f0\fs20 \uc0\u9484 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9488 
+\f4 \
+ \uc0\u9474               Browser (User)\u9474 \
+
+\f0 \uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 
+\f8 \'84\'a6\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'a3
+\f4 \
+                              \uc0\u9474 \
+                             \uc0\u9660 \
+
+\f0 \uc0\u9484 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9488 
+\f4 \
+ \uc0\u9474                  Instrumentation                             \u9474   \u8592  injected JS + Playwright/CDP\
+ \uc0\u9474                  Layer (Free)                                    \u9474 \
+
+\f0 \uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 
+\f8 \'84\'a6\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'a3
+\f4 \
+                              \uc0\u9474  emits\
+                             \uc0\u9660 \
+
+\f0 \uc0\u9484 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9488 
+\f4 \
+ \uc0\u9474                    Interaction Trace                         \u9474   \u8592  structured JSONL\
+ \uc0\u9474                    Recorder                                       \u9474 \
+
+\f0 \uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 
+\f8 \'84\'a6\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'a3
+\f4 \
+                              \uc0\u9474  stores\
+                             \uc0\u9660 \
+
+\f0 \uc0\u9484 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9488 
+\f4 \
+ \uc0\u9474                      Trace Store                                 \u9474   \u8592  flat files (JSONL)\
+ \uc0\u9474                      (No DB initially)                          \u9474 \
+
+\f0 \uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 
+\f8 \'84\'a6\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'9f\'84\'a3
+\f4 \
+                              \uc0\u9474  feeds\
+                             \uc0\u9660 \
+
+\f0 \uc0\u9484 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9488 
+\f4 \
+ \uc0\u9474                       AI Reconstruction                     \u9474   \u8592  batched + selective\
+ \uc0\u9474                       Agent                                          \u9474 \
+
+\f0 \uc0\u9492 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9472 \u9496 
+\f4 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b0\fs28 \cf2  
+\f2\b \cf2 Key cost-saving insight
+\f3\b0 \cf2 \
+\uc0\u8594  Use 
+\f2\b \cf2 JSON Lines (append-only)
+\f3\b0 \cf2  instead of databases\
+\uc0\u8594  Use 
+\f2\b \cf2 batch summarization before AI calls
+\f4\fs20 \cf2 \
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs34 \cf2 3. Free tools to leverage (battle-tested)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs30 \cf3 \ul \ulc3 Capture & control\cf2 \ulnone \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3468\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4086\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\qc\partightenfactor0
+
+\f9\fs24 \cf0 \expnd0\expndtw0\kerning0
+Tool\cell 
+\pard\intbl\itap1\pardeftab720\sa240\qc\partightenfactor0
+\cf0 Why\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3468\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4086\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Playwright
+\f10\b0 \cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Free, records interactions, hooks into CDP\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3468\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4086\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f9\b \cf0 Chrome DevTools Protocol (CDP)
+\f10\b0 \cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Low-level DOM, CSS, network\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3468\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4086\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f9\b \cf0 MutationObserver
+\f10\b0 \cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Precise DOM diffs\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3468\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4086\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f9\b \cf0 PerformanceObserver
+\f10\b0 \cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Layout / paint triggers\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3468\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth4086\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f9\b \cf0 CSSStyleDeclaration
+\f10\b0 \cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Computed style deltas\cell \lastrow\row
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs20 \cf2 \kerning1\expnd0\expndtw0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs30 \cf2 Why NOT session replay tools
+\f3\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Closed source\
+	\'95	Data locked\
+	\'95	Not AI-friendly\
+	\'95	Expensive\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs20 \cf2 \
+\
+
+\fs34 4. The Interaction Trace Model (MOST IMPORTANT PART)
+\f3\b0\fs28 \cf2 \
+\
+This is the 
+\f2\b \cf2 language
+\f3\b0 \cf2  an AI agent will understand.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 \
+Core design rule
+\f3\b0\fs28 \
+\pard\tx860\tx1420\tx1980\tx2540\tx3100\tx3660\tx4220\tx4780\tx5340\tx5900\tx6460\tx7020\li300\sl324\slmult1\partightenfactor0
+
+\f2\b \cf2 Every record must answer: \'93What happened, why, and what changed?\'94
+\f3\b0 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 Example: JSONL event record\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs20 \cf2 json\
+\{\
+  "ts": 1738012312.231,\
+  "type": "interaction",\
+  "event": \{\
+    "kind": "click",\
+    "selector": "button[data-id='submit']",\
+    "x": 421,\
+    "y": 612\
+  \},\
+  "before": \{\
+    "dom_hash": "a83f9c",\
+    "styles": \{\
+      "display": "block",\
+      "opacity": "1"\
+    \}\
+  \},\
+  "after": \{\
+    "dom_diff": [\
+      \{ "op": "add", "node": "<div class='modal'>" \}\
+    ],\
+    "style_diff": \{\
+      "opacity": \{ "from": "0", "to": "1" \}\
+    \}\
+  \},\
+  "network": [\
+    \{\
+      "url": "/api/login",\
+      "method": "POST",\
+      "status": 200\
+    \}\
+  ]\
+\}
+\f3\b0\fs28 \cf2 \
+
+\f4\b\fs20 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b0\fs28 \cf2  This is:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	
+\f2\b \cf2 Small
+\f3\b0 \cf2 \
+	\'95	
+\f2\b \cf2 Structured
+\f3\b0 \cf2 \
+	\'95	
+\f2\b \cf2 Causally linked
+\f3\b0 \cf2 \
+Perfect for an AI agent.
+\f4\b\fs20 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+\
+
+\fs34 5. Capture pipeline (step-by-step)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs30 \cf2 Step 1: Control browser (Playwright)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs20 \cf2 example ts\
+const page = await browser.newPage();\
+await page.exposeFunction("recordEvent", saveToTrace);\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs30 \cf2 Step 2: Inject instrumentation
+\f3\b0\fs28 \
+Injected into every page:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs20 \cf2 example js\
+// DOM changes\
+const observer = new MutationObserver(mutations => \{\
+  window.recordEvent(\{\
+    type: "dom_mutation",\
+    mutations: serialize(mutations)\
+  \});\
+\});\
+observer.observe(document.body, \{\
+  childList: true,\
+  attributes: true,\
+  subtree: true\
+\});\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 Step 3: Capture interactions\
+
+\fs20 example js\
+document.addEventListener("click", e => \{\
+  window.recordEvent(\{\
+    type: "interaction",\
+    event: \{\
+      kind: "click",\
+      selector: getStableSelector(e.target)\
+    \}\
+  \});\
+\});\
+\
+
+\fs30 Step 4: Capture CSS deltas (cheaply)\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b0\fs28 \cf2 Only record 
+\f2\b \cf2 computed styles of affected nodes
+\f3\b0 \cf2 :\
+\
+
+\fs20 example js\
+const styles = getComputedStyle(node);\
+pick(styles, ["display", "opacity", "visibility", "transform"]);\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs28 \cf2  Do NOT record full stylesheets (too big).\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 Step 5: Capture network via Playwright\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\fs20 \cf2 example ts\
+page.on("response", response => \{\
+  record(\{\
+    type: "network",\
+    url: response.url(),\
+    status: response.status()\
+  \});\
+\});\
+\
+
+\fs34 6. AI consumption (cost-aware pipeline)
+\f3\b0\fs28 \cf2 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2  Phase 1: Local summarization (no AI)
+\f3\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Group by interaction\
+	\'95	Collapse noisy mutations\
+	\'95	Build:\
+\pard\tqr\tx500\tx660\li660\fi-660\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	UI state graph\
+	\'95	Event \uc0\u8594  state transitions\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2  Phase 2: Selective AI calls
+\f3\b0\fs28 \
+\
+Only send:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	HTML snippets involved\
+	\'95	Interaction records\
+	\'95	Style deltas\
+	\'95	Network endpoints\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\b \cf2 NOT
+\f3\b0 \cf2 :\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Full page HTML\
+	\'95	Full CSS\
+	\'95	Full JS bundles\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 Example AI task
+\f3\b0\fs28 \
+\
+\pard\tx860\tx1420\tx1980\tx2540\tx3100\tx3660\tx4220\tx4780\tx5340\tx5900\tx6460\tx7020\li300\sl324\slmult1\partightenfactor0
+\cf2 \'93Given this static HTML and these interaction traces, generate JS that recreates the observed behavior.\'94\
+\
+This keeps token usage low.
+\fs20 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+\cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs34 \cf2 \
+7. What this CAN reconstruct
+\f3\b0\fs28 \cf2 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f6\fs30 \cf2 \uc0\u9989 
+\f4\b  Can reconstruct
+\f3\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Modals\
+	\'95	Dropdowns\
+	\'95	Tabs\
+	\'95	Client-side navigation\
+	\'95	UI state transitions\
+	\'95	Conditional rendering\
+	\'95	CSS-driven animations\
+\
+This is
+\f2\b \cf2  valuable in that it can be used to reconstruct animations on a new site
+\f3\b0 \cf2 . This tool can also be used to package animation training data for AI agent frontend web builders.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs34 \cf2 8. Suggested MVP \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b0\fs28 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 MVP Goal
+\f3\b0\fs28 \
+\pard\tx860\tx1420\tx1980\tx2540\tx3100\tx3660\tx4220\tx4780\tx5340\tx5900\tx6460\tx7020\li300\sl324\slmult1\partightenfactor0
+\cf2 \'93Record interactions on a site and recreate 
+\f2\b \cf2 80% of visible UI interactivity
+\f3\b0 \cf2  using static assets + generated JS.\'94\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+
+\fs20 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs30 \cf2 Stack
+\f3\b0\fs28 \
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	Playwright\
+	\'95	Node.js\
+	\'95	JSONL trace files\
+	\'95	One AI reconstruction pass\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f4\b\fs34 \cf2 Why this idea is strong (final insight)
+\f3\b0\fs28 \cf2 \
+\
+What you\'92re building is not:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f6 \cf2 \uc0\u10060 
+\f3  a scraper\
+
+\f6 \uc0\u10060 
+\f3  a cloner\
+\
+It\'92s a 
+\f2\b \cf2 behavioral compiler
+\f3\b0 \cf2 :\
+\
+\pard\tx860\tx1420\tx1980\tx2540\tx3100\tx3660\tx4220\tx4780\tx5340\tx5900\tx6460\tx7020\li300\sl324\slmult1\partightenfactor0
+
+\f5\i \cf2 Observed behavior \uc0\u8594  Interaction grammar \u8594  Code
+\f3\i0 \
+\
+That\'92s 
+\f2\b \cf2 very aligned with where AI tooling is going
+\f3\b0 \cf2 .
+\fs20 \cf2 \
+}

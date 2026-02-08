@@ -1,0 +1,39 @@
+{
+  "name": "animation-capture-tool",
+  "version": "1.0.0",
+  "description": "Capture web interactions and animations for AI-powered reconstruction",
+  "main": "dist/index.js",
+  "bin": {
+    "capture-anim": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "dev": "ts-node src/cli.ts",
+    "record": "node dist/cli.js record",
+    "view": "node dist/cli.js view",
+    "export": "node dist/cli.js export",
+    "list": "node dist/cli.js list"
+  },
+  "keywords": [
+    "animation",
+    "capture",
+    "web-scraping",
+    "ai",
+    "interaction-trace"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/fs-extra": "^11.0.4",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.2"
+  }
+}

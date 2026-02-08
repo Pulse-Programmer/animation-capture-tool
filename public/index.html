@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Capture Tool - Capture. Analyze. Recreate.</title>
+    <meta name="description" content="Record web interactions and animations with precision. AI-powered animation reconstruction for developers.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">⏺</span>
+                <span class="logo-text">AnimCapture</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="https://github.com" class="nav-cta">View on GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    <span>Open Source • Developer Tool</span>
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="title-line">Capture Web Animations</span>
+                    <span class="title-line">With <span class="gradient-text">Precision</span></span>
+                </h1>
+
+                <p class="hero-subtitle">
+                    Record user interactions, analyze DOM mutations, and generate AI-ready traces.
+                    Transform any web animation into reproducible code.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#demo" class="btn btn-primary">
+                        <span class="btn-icon">▶</span>
+                        <span>See it in Action</span>
+                    </a>
+                    <a href="#how-it-works" class="btn btn-secondary">
+                        <span>Documentation</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                </div>
+
+                <div class="hero-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="terminal-title">Terminal</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line"><span class="prompt">$</span> npm install -g animation-capture-tool</div>
+                        <div class="terminal-line"><span class="prompt">$</span> capture-anim record https://yoursite.com</div>
+                        <div class="terminal-line output">
+                            <span class="status-icon">🚀</span> Starting capture session...
+                        </div>
+                        <div class="terminal-line output">
+                            <span class="status-icon recording">⏺</span> Recording interactions...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-subtitle">Everything you need to capture, analyze, and recreate web animations</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" data-delay="0">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Interaction Recording</h3>
+                    <p class="feature-description">
+                        Capture every click, hover, scroll, and input. Records precise timing, coordinates,
+                        and element selectors with millisecond accuracy.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Click & hover events</li>
+                        <li>Keyboard interactions</li>
+                        <li>Scroll tracking</li>
+                        <li>Form submissions</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-delay="100">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">DOM Mutation Tracking</h3>
+                    <p class="feature-description">
+                        Intelligent diffing engine captures before/after snapshots of DOM changes.
+                        Understands what changed, where, and why.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Element additions/removals</li>
+                        <li>Attribute modifications</li>
+                        <li>Text content changes</li>
+                        <li>Class toggles</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-delay="200">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M3 9H21M9 3V21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Style Analysis</h3>
+                    <p class="feature-description">
+                        Captures computed styles before and after interactions. Detects transitions,
+                        transforms, opacity changes, and more.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Computed style snapshots</li>
+                        <li>Transition detection</li>
+                        <li>Transform tracking</li>
+                        <li>Animation timing</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-delay="300">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">AI-Ready Output</h3>
+                    <p class="feature-description">
+                        Generates structured animation profiles optimized for LLMs. Export to multiple
+                        formats including AI prompts, JSON, and markdown.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Animation profiles</li>
+                        <li>AI prompt generation</li>
+                        <li>JSON/Markdown export</li>
+                        <li>Code recreation</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-delay="400">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Stable Selectors</h3>
+                    <p class="feature-description">
+                        Advanced selector engine generates resilient CSS selectors that survive
+                        refactoring. Prioritizes IDs, data attributes, and semantic paths.
+                    </p>
+                    <ul class="feature-list">
+                        <li>ID-based selectors</li>
+                        <li>Data attribute priority</li>
+                        <li>Semantic fallbacks</li>
+                        <li>Position-aware paths</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" data-delay="500">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Zero Dependencies</h3>
+                    <p class="feature-description">
+                        Built on Playwright for reliable browser automation. CLI-first design means
+                        it integrates seamlessly into any workflow.
+                    </p>
+                    <ul class="feature-list">
+                        <li>Playwright-powered</li>
+                        <li>Headless mode support</li>
+                        <li>CLI interface</li>
+                        <li>Scriptable automation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">See It In Action</h2>
+                <p class="section-subtitle">Real examples captured and analyzed by the tool</p>
+            </div>
+
+            <div class="demo-grid">
+                <!-- Example 1: Button Click -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>Button Click Animation</h3>
+                        <span class="demo-tag">Captured from GitHub</span>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-example button-example">
+                            <button class="demo-button">Click Me</button>
+                        </div>
+                    </div>
+
+                    <div class="demo-data">
+                        <div class="data-label">Captured Properties</div>
+                        <div class="property-changes">
+                            <div class="property-change">
+                                <span class="prop-name">transform</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">scale(0.95)</span>
+                            </div>
+                            <div class="property-change">
+                                <span class="prop-name">opacity</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">0.85</span>
+                            </div>
+                            <div class="property-change">
+                                <span class="prop-name">box-shadow</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">inset 0 2px 4px</span>
+                            </div>
+                        </div>
+                        <div class="timing-info">
+                            <span class="timing-label">Duration:</span> 150ms
+                            <span class="timing-label">Easing:</span> ease-out
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2: Card Hover -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>Card Hover Effect</h3>
+                        <span class="demo-tag">Captured from Stripe</span>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-example card-example">
+                            <div class="hover-card">
+                                <div class="card-glow"></div>
+                                <h4>Hover Over Me</h4>
+                                <p>Watch the smooth elevation change</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-data">
+                        <div class="data-label">Captured Properties</div>
+                        <div class="property-changes">
+                            <div class="property-change">
+                                <span class="prop-name">transform</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">translateY(-8px)</span>
+                            </div>
+                            <div class="property-change">
+                                <span class="prop-name">box-shadow</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">0 12px 24px rgba(...)</span>
+                            </div>
+                            <div class="property-change">
+                                <span class="prop-name">border-color</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">#00d4ff</span>
+                            </div>
+                        </div>
+                        <div class="timing-info">
+                            <span class="timing-label">Duration:</span> 300ms
+                            <span class="timing-label">Easing:</span> cubic-bezier
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 3: Modal Open -->
+                <div class="demo-card">
+                    <div class="demo-header">
+                        <h3>Modal Animation</h3>
+                        <span class="demo-tag">Captured from Vercel</span>
+                    </div>
+
+                    <div class="demo-preview">
+                        <div class="demo-example modal-example">
+                            <button class="modal-trigger">Open Modal</button>
+                            <div class="modal-overlay">
+                                <div class="modal-content">
+                                    <h4>Modal Title</h4>
+                                    <p>This is a modal with smooth animations</p>
+                                    <button class="modal-close">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="demo-data">
+                        <div class="data-label">Captured Properties</div>
+                        <div class="property-changes">
+                            <div class="property-change">
+                                <span class="prop-name">opacity</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">0 to 1</span>
+                            </div>
+                            <div class="property-change">
+                                <span class="prop-name">transform</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">scale(0.9) to scale(1)</span>
+                            </div>
+                            <div class="property-change">
+                                <span class="prop-name">backdrop-filter</span>
+                                <span class="prop-arrow">→</span>
+                                <span class="prop-value">blur(8px)</span>
+                            </div>
+                        </div>
+                        <div class="timing-info">
+                            <span class="timing-label">Duration:</span> 250ms
+                            <span class="timing-label">Easing:</span> ease-out
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Output Section -->
+    <section class="code-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">AI-Generated Code</h2>
+                <p class="section-subtitle">From captured traces to production-ready code</p>
+            </div>
+
+            <div class="code-showcase">
+                <div class="code-tabs">
+                    <button class="code-tab active" data-lang="trace">Captured Trace</button>
+                    <button class="code-tab" data-lang="prompt">AI Prompt</button>
+                    <button class="code-tab" data-lang="output">Generated Code</button>
+                </div>
+
+                <div class="code-panel active" data-panel="trace">
+                    <div class="code-header">
+                        <span class="code-file">ai-output.json</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>{
+  "animationProfiles": [
+    {
+      "name": "button-click-feedback",
+      "trigger": {
+        "event": "click",
+        "selector": "button.primary-btn"
+      },
+      "effect": {
+        "type": "transition",
+        "target": "button.primary-btn",
+        "properties": {
+          "transform": {
+            "from": "scale(1)",
+            "to": "scale(0.95)"
+          },
+          "opacity": {
+            "from": "1",
+            "to": "0.85"
+          }
+        },
+        "timing": {
+          "duration": "150ms",
+          "easing": "ease-out"
+        }
+      }
+    }
+  ]
+}</code></pre>
+                </div>
+
+                <div class="code-panel" data-panel="prompt">
+                    <div class="code-header">
+                        <span class="code-file">ai-prompt.txt</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>You are a frontend engineer.
+
+Given the following interaction traces, generate minimal
+JavaScript that recreates the observed animations.
+
+Animation Profile: button-click-feedback
+Trigger: click on selector "button.primary-btn"
+Effect: transition
+
+Properties to animate:
+- transform: scale(1) → scale(0.95)
+- opacity: 1 → 0.85
+
+Timing:
+- Duration: 150ms
+- Easing: ease-out
+
+Generate complete, working code with HTML, CSS, and JS.</code></pre>
+                </div>
+
+                <div class="code-panel" data-panel="output">
+                    <div class="code-header">
+                        <span class="code-file">button-animation.js</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                    <pre><code>// Generated by Claude from captured traces
+
+const buttons = document.querySelectorAll('button.primary-btn');
+
+buttons.forEach(button => {
+  button.addEventListener('click', function() {
+    // Apply press effect
+    this.style.transition = 'all 150ms ease-out';
+    this.style.transform = 'scale(0.95)';
+    this.style.opacity = '0.85';
+
+    // Reset after animation
+    setTimeout(() => {
+      this.style.transform = 'scale(1)';
+      this.style.opacity = '1';
+    }, 150);
+  });
+});</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">From recording to code generation in three simple steps</p>
+            </div>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Record Interactions</h3>
+                        <p class="step-description">
+                            Launch the tool with your target URL. A browser opens and starts recording
+                            every interaction—clicks, hovers, scrolls, and form inputs. Behind the scenes,
+                            the tool instruments the DOM to capture before/after snapshots of every change.
+                        </p>
+                        <div class="step-code">
+                            <code>$ capture-anim record https://yoursite.com</code>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-browser">
+                            <div class="browser-bar">
+                                <div class="browser-dots">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                            <div class="browser-content">
+                                <div class="recording-indicator">
+                                    <span class="rec-dot"></span>
+                                    <span>Recording</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Analyze Traces</h3>
+                        <p class="step-description">
+                            The engine processes captured data to extract animation profiles. It identifies
+                            which CSS properties changed, calculates timing functions, and generates stable
+                            selectors. All traces are saved in a structured, queryable format.
+                        </p>
+                        <div class="step-stats">
+                            <div class="stat">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Interactions</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Animations</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">23</div>
+                                <div class="stat-label">Property Changes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-analysis">
+                            <div class="analysis-row">
+                                <span class="analysis-icon">✓</span>
+                                <span>DOM snapshot captured</span>
+                            </div>
+                            <div class="analysis-row">
+                                <span class="analysis-icon">✓</span>
+                                <span>Styles computed</span>
+                            </div>
+                            <div class="analysis-row">
+                                <span class="analysis-icon">✓</span>
+                                <span>Animation profile extracted</span>
+                            </div>
+                            <div class="analysis-row">
+                                <span class="analysis-icon">⏳</span>
+                                <span>Generating AI prompt...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3 class="step-title">Generate Code</h3>
+                        <p class="step-description">
+                            Export your traces to AI-ready formats. The tool generates prompts optimized
+                            for Claude or other LLMs, which then produce clean, working code that recreates
+                            your animations. No manual translation needed.
+                        </p>
+                        <div class="step-code">
+                            <code>$ capture-anim export session_xyz -f prompt</code>
+                        </div>
+                    </div>
+                    <div class="step-visual">
+                        <div class="visual-output">
+                            <div class="output-file">
+                                <div class="file-icon">📄</div>
+                                <div class="file-info">
+                                    <div class="file-name">ai-prompt.txt</div>
+                                    <div class="file-size">2.4 KB</div>
+                                </div>
+                            </div>
+                            <div class="output-file">
+                                <div class="file-icon">📊</div>
+                                <div class="file-info">
+                                    <div class="file-name">ai-output.json</div>
+                                    <div class="file-size">15.8 KB</div>
+                                </div>
+                            </div>
+                            <div class="output-file">
+                                <div class="file-icon">📝</div>
+                                <div class="file-info">
+                                    <div class="file-name">README.md</div>
+                                    <div class="file-size">3.2 KB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Built With Modern Tools</h2>
+                <p class="section-subtitle">Leveraging proven technologies for reliability</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-logo">🎭</div>
+                    <h4>Playwright</h4>
+                    <p>Reliable browser automation</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-logo">📘</div>
+                    <h4>TypeScript</h4>
+                    <p>Type-safe development</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-logo">⚡</div>
+                    <h4>Node.js</h4>
+                    <p>Fast runtime environment</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-logo">🧠</div>
+                    <h4>Claude AI</h4>
+                    <p>Intelligent code generation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Capture?</h2>
+                <p class="cta-subtitle">Install the tool and start recording animations in minutes</p>
+
+                <div class="cta-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">npm install -g animation-capture-tool</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">$</span>
+                            <span class="command">capture-anim record https://example.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-actions">
+                    <a href="https://github.com" class="btn btn-primary btn-large">
+                        <span>View on GitHub</span>
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-large">
+                        <span>Read Documentation</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <span class="logo-icon">⏺</span>
+                        <span class="logo-text">AnimCapture</span>
+                    </div>
+                    <p class="footer-tagline">Capture. Analyze. Recreate.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#demo">Demo</a></li>
+                            <li><a href="#how-it-works">How It Works</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Documentation</a></li>
+                            <li><a href="#">GitHub</a></li>
+                            <li><a href="#">Examples</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Animation Capture Tool. Open Source MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

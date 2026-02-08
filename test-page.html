@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animation Capture Test Page</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 50px;
+      background: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 30px;
+    }
+    
+    .test-button {
+      background: #0066cc;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 200ms ease-out;
+      margin: 10px;
+    }
+    
+    .test-button:hover {
+      background: #0052a3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,102,204,0.3);
+    }
+    
+    .test-button:active {
+      transform: translateY(0) scale(0.98);
+      box-shadow: 0 2px 6px rgba(0,102,204,0.2);
+    }
+    
+    .hover-box {
+      background: #ff6b6b;
+      color: white;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 8px;
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    
+    .hover-box:hover {
+      background: #ff5252;
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(255,107,107,0.4);
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      margin: 20px 0;
+      transition: border-color 200ms;
+    }
+    
+    .input-field:focus {
+      outline: none;
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+    }
+    
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Animation Capture Test Page</h1>
+    
+    <p>This page has simple animations to test the capture tool.</p>
+    
+    <div style="margin: 30px 0;">
+      <h3>Test 1: Button Click Animation</h3>
+      <button class="test-button" onclick="handleButtonClick(this)">
+        Click Me!
+      </button>
+      <button class="test-button" onclick="handleButtonClick(this)">
+        Or Me!
+      </button>
+    </div>
+    
+    <div style="margin: 30px 0;">
+      <h3>Test 2: Hover Effect</h3>
+      <div class="hover-box">
+        Hover over me to see the animation
+      </div>
+    </div>
+    
+    <div style="margin: 30px 0;">
+      <h3>Test 3: Input Focus</h3>
+      <input 
+        type="text" 
+        class="input-field" 
+        placeholder="Type something here..."
+        onfocus="handleFocus()"
+      >
+    </div>
+    
+    <div class="status" id="status">
+      <strong>Status:</strong> Ready for capture. Interact with elements above.
+    </div>
+  </div>
+  
+  <script>
+    let clickCount = 0;
+    
+    function handleButtonClick(button) {
+      clickCount++;
+      document.getElementById('status').innerHTML = 
+        `<strong>Status:</strong> Button clicked ${clickCount} time(s)!`;
+    }
+    
+    function handleFocus() {
+      document.getElementById('status').innerHTML = 
+        `<strong>Status:</strong> Input focused! Type something...`;
+    }
+    
+    console.log('Test page loaded. Ready for animation capture!');
+  </script>
+</body>
+</html>

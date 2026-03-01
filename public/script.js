@@ -4,6 +4,15 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const enablePointerFX = !reducedMotion && finePointer;
 
+// Back-to-top control
+const backToTop = document.querySelector("[data-back-to-top]");
+if (backToTop) {
+  backToTop.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+  });
+}
+
 // Mobile menu
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector(".nav-links");

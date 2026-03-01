@@ -1,0 +1,80 @@
+[
+  {
+    "device": "iPhone SE",
+    "viewport": {
+      "width": 320,
+      "height": 568
+    },
+    "overflowPx": 0,
+    "tinyTargetCount": 0,
+    "tinyTargets": [],
+    "menuToggleVisible": true,
+    "heroButtonsStacked": true,
+    "tabCount": 3
+  },
+  {
+    "device": "iPhone 12",
+    "viewport": {
+      "width": 390,
+      "height": 664
+    },
+    "overflowPx": 0,
+    "tinyTargetCount": 0,
+    "tinyTargets": [],
+    "menuToggleVisible": true,
+    "heroButtonsStacked": true,
+    "tabCount": 3
+  },
+  {
+    "device": "Pixel 5",
+    "viewport": {
+      "width": 393,
+      "height": 727
+    },
+    "overflowPx": 0,
+    "tinyTargetCount": 0,
+    "tinyTargets": [],
+    "menuToggleVisible": true,
+    "heroButtonsStacked": true,
+    "tabCount": 3
+  },
+  {
+    "device": "Galaxy S9+",
+    "viewport": {
+      "width": 320,
+      "height": 658
+    },
+    "overflowPx": 0,
+    "tinyTargetCount": 0,
+    "tinyTargets": [],
+    "menuToggleVisible": true,
+    "heroButtonsStacked": true,
+    "tabCount": 3
+  },
+  {
+    "device": "iPad Mini",
+    "viewport": {
+      "width": 768,
+      "height": 1024
+    },
+    "overflowPx": 0,
+    "tinyTargetCount": 0,
+    "tinyTargets": [],
+    "menuToggleVisible": false,
+    "heroButtonsStacked": false,
+    "tabCount": 3
+  },
+  {
+    "device": "iPad Pro 11",
+    "viewport": {
+      "width": 834,
+      "height": 1194
+    },
+    "overflowPx": 0,
+    "tinyTargetCount": 0,
+    "tinyTargets": [],
+    "menuToggleVisible": false,
+    "heroButtonsStacked": false,
+    "tabCount": 3
+  }
+]

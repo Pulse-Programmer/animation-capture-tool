@@ -1,0 +1,68 @@
+[
+  {
+    "name": "w320-h568",
+    "width": 320,
+    "height": 568,
+    "clientWidth": 320,
+    "scrollWidth": 320,
+    "overflow": 0,
+    "tiny": [],
+    "tinyCount": 0,
+    "menuVisible": true
+  },
+  {
+    "name": "w360-h740",
+    "width": 360,
+    "height": 740,
+    "clientWidth": 360,
+    "scrollWidth": 360,
+    "overflow": 0,
+    "tiny": [],
+    "tinyCount": 0,
+    "menuVisible": true
+  },
+  {
+    "name": "w390-h844",
+    "width": 390,
+    "height": 844,
+    "clientWidth": 390,
+    "scrollWidth": 390,
+    "overflow": 0,
+    "tiny": [],
+    "tinyCount": 0,
+    "menuVisible": true
+  },
+  {
+    "name": "w412-h915",
+    "width": 412,
+    "height": 915,
+    "clientWidth": 412,
+    "scrollWidth": 412,
+    "overflow": 0,
+    "tiny": [],
+    "tinyCount": 0,
+    "menuVisible": true
+  },
+  {
+    "name": "w768-h1024",
+    "width": 768,
+    "height": 1024,
+    "clientWidth": 768,
+    "scrollWidth": 768,
+    "overflow": 0,
+    "tiny": [],
+    "tinyCount": 0,
+    "menuVisible": false
+  },
+  {
+    "name": "w834-h1194",
+    "width": 834,
+    "height": 1194,
+    "clientWidth": 834,
+    "scrollWidth": 834,
+    "overflow": 0,
+    "tiny": [],
+    "tinyCount": 0,
+    "menuVisible": false
+  }
+]
